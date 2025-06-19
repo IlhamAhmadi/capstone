@@ -26,14 +26,14 @@ label_encoders = {}
 label_cols = ['Gender', 'family_history_with_overweight', 'FAVC', 'CAEC', 'SMOKE', 'SCC', 'CALC', 'MTRANS']
 
 encoder_maps = {
-    'Gender': ['Female', 'Male'],
-    'family_history_with_overweight': ['no', 'yes'],
-    'FAVC': ['no', 'yes'],
-    'CAEC': ['no', 'Sometimes', 'Frequently', 'Always'],
-    'SMOKE': ['no', 'yes'],
-    'SCC': ['no', 'yes'],
-    'CALC': ['no', 'Sometimes', 'Frequently', 'Always'],
-    'MTRANS': ['Automobile', 'Bike', 'Motorbike', 'Public_Transportation', 'Walking']
+    'Gender': ['Perempuan', 'Laki-laki'],
+    'family_history_with_overweight': ['Tidak', 'Ya'],
+    'FAVC': ['Tidak', 'Ya'],
+    'CAEC': ['Tidak', 'Kadang-kadang', 'Sering', 'Selalu'],
+    'SMOKE': ['Tidak', 'Ya'],
+    'SCC': ['Tidak', 'Ya'],
+    'CALC': ['Tidak', 'Kadang-kadang', 'Sering', 'Selalu'],
+    'MTRANS': ['Mobil', 'Sepeda', 'Motor', 'Transportasi Publik', 'Jalan Kaki']
 }
 
 for col, classes in encoder_maps.items():
@@ -45,7 +45,7 @@ for col, classes in encoder_maps.items():
 # Streamlit UI
 # ----------------------------
 st.title("Prediksi Tingkat Obesitas")
-st.markdown("Masukkan data berikut untuk memprediksi kategori obesitas Anda.")
+st.markdown("Masukkan data berikut untuk memprediksi kategori obesitas kamu.")
 
 # Input
 gender = st.selectbox('Jenis Kelamin', encoder_maps['Gender'])
@@ -56,13 +56,13 @@ family_history = st.selectbox('Riwayat keluarga overweight?', encoder_maps['fami
 favc = st.selectbox('Sering makan makanan tinggi kalori?', encoder_maps['FAVC'])
 fcvc = st.slider('Frekuensi konsumsi sayur (1-3)', 1, 3, 2)
 ncp = st.slider('Jumlah makan besar per hari (1-4)', 1, 4, 3)
-caec = st.selectbox('Ngemil?', encoder_maps['CAEC'])
-smoke = st.selectbox('Merokok?', encoder_maps['SMOKE'])
-scc = st.selectbox('Kontrol kalori?', encoder_maps['SCC'])
-ch2o = st.slider('Konsumsi air harian (1-3 liter)', 1, 3, 2)
+caec = st.selectbox('Seberapa sering makan jajan (ngemil)?', encoder_maps['CAEC'])
+smoke = st.selectbox('Apakah merokok?', encoder_maps['SMOKE'])
+scc = st.selectbox('Apakah kamu mengontrol kalori?', encoder_maps['SCC'])
+ch2o = st.slider('Berapa banyak konsumsi air harian (1-3 liter)', 1, 3, 2)
 faf = st.slider('Frekuensi aktivitas fisik (0-3)', 0, 3, 1)
 tue = st.slider('Waktu menatap layar/hari (0-2 jam)', 0, 2, 1)
-calc = st.selectbox('Konsumsi alkohol?', encoder_maps['CALC'])
+calc = st.selectbox('Apakah mengkonsumsi alkohol?', encoder_maps['CALC'])
 mtrans = st.selectbox('Transportasi utama?', encoder_maps['MTRANS'])
 
 # Buat dataframe
